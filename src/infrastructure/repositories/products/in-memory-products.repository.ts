@@ -1,6 +1,8 @@
+import { Injectable } from '@nestjs/common';
 import { Product } from 'src/domain/entities/procuct.entity';
 import { IProductsRepository } from 'src/domain/repositories/products.repository';
 
+@Injectable()
 export class InMemoryProductsRepository implements IProductsRepository {
   private readonly products: Map<string, Product> = new Map();
 
