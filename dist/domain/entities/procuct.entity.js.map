@@ -1,1 +1,0 @@
-{"version":3,"file":"procuct.entity.js","sourceRoot":"","sources":["../../../src/domain/entities/procuct.entity.ts"],"names":[],"mappings":";;;AAAA,mCAAoC;AAGpC,MAAa,OAAO;IAUlB,YAAY,KAA4B,EAAE,IAAa;QACrD,MAAM,CAAC,MAAM,CAAC,IAAI,EAAE,KAAK,CAAC,CAAC;QAE3B,IAAI,CAAC,IAAI,EAAE,CAAC;YACV,IAAI,CAAC,IAAI,GAAG,IAAA,mBAAU,GAAE,CAAC;QAC3B,CAAC;IACH,CAAC;CACF;AAjBD,0BAiBC"}

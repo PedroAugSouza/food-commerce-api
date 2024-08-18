@@ -1,1 +1,0 @@
-export declare const PRODUCTS_REPOSITORY = "PRODUCTS_REPOSITORY";
