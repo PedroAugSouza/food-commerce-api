@@ -36,8 +36,6 @@ export class CreateProductController {
     @UploadedFile('file') file: Express.Multer.File,
   ) {
     try {
-      console.log(file);
-
       const result = await this.createProductUseCase.execute({
         ...input,
         image: `/uploads/${file.filename}`,
