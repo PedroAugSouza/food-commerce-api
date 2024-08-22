@@ -1,15 +1,15 @@
 import { Global, Module } from '@nestjs/common';
+import { PrismaProductsRepository } from './products/prima-products.repository';
 import { PRODUCTS_REPOSITORY } from 'src/domain/di/repositories';
-import { InMemoryProductsRepository } from './products/in-memory-products.repository';
 
 @Global()
 @Module({
   providers: [
     {
       provide: PRODUCTS_REPOSITORY,
-      useClass: InMemoryProductsRepository,
+      useClass: PrismaProductsRepository,
     },
   ],
   exports: [PRODUCTS_REPOSITORY],
 })
-export class InMemoryRepositoriesModule {}
+export class PrismaRepositoriesModule {}

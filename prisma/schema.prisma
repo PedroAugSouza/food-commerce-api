@@ -14,10 +14,10 @@ datasource db {
 }
 
 model Product {
-  id          String   @id
+  uuid        String   @id
   name        String
   price       Float
-  category    String
+  category    Category
   image       String
   description String
   createdAt   DateTime @default(now())

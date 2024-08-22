@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 import { CommandsModule } from './commands/commands.module';
-import { InMemoryRepositoriesModule } from 'src/infrastructure/repositories/in-memory-repositories.module';
+import { PrismaRepositoriesModule } from 'src/infrastructure/repositories/prisma-repoitory.module';
+import { PrismaModule } from 'src/infrastructure/prisma/prisma.module';
 
 @Module({
-  imports: [CommandsModule, InMemoryRepositoriesModule],
+  imports: [CommandsModule, PrismaModule, PrismaRepositoriesModule],
 })
 export class ApplicationModule {}

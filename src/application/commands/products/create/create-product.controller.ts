@@ -35,18 +35,14 @@ export class CreateProductController {
     @Body() input: InputCreateProductDTO,
     @UploadedFile('file') file: Express.Multer.File,
   ) {
-    try {
-      const result = await this.createProductUseCase.execute({
-        ...input,
-        image: `/uploads/${file.filename}`,
-      });
-      if (result.value instanceof UnexpectedError) throw result.value;
+    const result = await this.createProductUseCase.execute({
+      ...input,
+      image: `/uploads/${file.filename}`,
+    });
+    if (result.value instanceof UnexpectedError) throw result.value;
 
-      if (result.value instanceof MissingParamError) throw result.value;
+    if (result.value instanceof MissingParamError) throw result.value;
 
-      return result.value;
-    } catch (error) {
-      throw new UnexpectedError(error);
-    }
+    return result.value;
   }
 }
