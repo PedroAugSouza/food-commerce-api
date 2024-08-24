@@ -1,1 +1,4 @@
-export type CategoryProductValueObject = 'food' | 'drink';
+export enum CategoryProductValueObject {
+  food = 'food',
+  drink = 'drink',
+}
