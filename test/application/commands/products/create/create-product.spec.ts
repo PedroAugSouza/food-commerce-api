@@ -1,8 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { beforeAll, describe, it, expect } from 'vitest';
-import { CreateProductUseCase } from './create-product.use-case';
-import { InMemoryRepositoriesModule } from 'src/infrastructure/repositories/in-memory-repositories.module';
+import { CreateProductUseCase } from 'src/application/commands/products/create/create-product.use-case';
 import { Product } from 'src/domain/entities/procuct.entity';
+import { CategoryProductValueObject } from 'src/domain/value-objects/category-product.value-object';
+import { InMemoryRepositoriesModule } from 'src/infrastructure/repositories/in-memory-repositories.module';
+import { beforeAll, describe, it, expect } from 'vitest';
 
 describe('create a new product', () => {
   let createProductUseCase: CreateProductUseCase;
@@ -22,7 +23,7 @@ describe('create a new product', () => {
       new Product({
         name: 'Product 1',
         price: 10,
-        category: 'drink',
+        category: CategoryProductValueObject.DRINK,
         image: 'Image 1',
         description: 'Description 1',
         createdAt: new Date(),
@@ -37,7 +38,7 @@ describe('create a new product', () => {
       new Product({
         name: '',
         price: 10,
-        category: 'drink',
+        category: CategoryProductValueObject.DRINK,
         image: 'Image 1',
         description: 'Description 1',
         createdAt: new Date(),
@@ -52,7 +53,7 @@ describe('create a new product', () => {
       new Product({
         name: 'name',
         price: null,
-        category: 'drink',
+        category: CategoryProductValueObject.DRINK,
         image: 'Image 1',
         description: 'Description 1',
         createdAt: new Date(),
@@ -82,7 +83,7 @@ describe('create a new product', () => {
       new Product({
         name: 'name',
         price: 10,
-        category: 'drink',
+        category: CategoryProductValueObject.DRINK,
         image: '',
         description: 'Description 1',
         createdAt: new Date(),
@@ -97,7 +98,7 @@ describe('create a new product', () => {
       new Product({
         name: 'name',
         price: 10,
-        category: 'drink',
+        category: CategoryProductValueObject.DRINK,
         image: 'Image 1',
         description: '',
         createdAt: new Date(),

@@ -1,4 +1,4 @@
 export enum CategoryProductValueObject {
-  food = 'food',
-  drink = 'drink',
+  FOOD = 'food',
+  DRINK = 'drink',
 }
