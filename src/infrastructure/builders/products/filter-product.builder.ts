@@ -3,6 +3,7 @@ import { CategoryProductValueObject } from 'src/domain/value-objects/category-pr
 export class FilterProductBuilder {
   category?: CategoryProductValueObject;
   price?: 'asc' | 'desc';
+  result: object;
 
   constructor(props?: IProps) {
     Object.assign(this, props);
@@ -21,7 +22,7 @@ export class FilterProductBuilder {
       price: this.price,
     });
 
-    return {
+    this.result = {
       where: {
         category: filter.category,
       },

@@ -13,7 +13,7 @@ export class FilterProductService {
   async execute(input: InputFilterProductDTO) {
     this.filterProductsBuilder.buildCategory(input.category);
     this.filterProductsBuilder.buildPrice(input.price);
-    const filters = this.filterProductsBuilder.build();
+    this.filterProductsBuilder.build();
 
     const products = await this.prisma.product.findMany({
       select: {
@@ -24,7 +24,7 @@ export class FilterProductService {
         price: true,
         uuid: true,
       },
-      ...filters,
+      ...this.filterProductsBuilder.result,
     });
     return products;
   }
