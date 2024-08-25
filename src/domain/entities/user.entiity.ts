@@ -1,4 +1,5 @@
 import { randomUUID } from 'crypto';
+import { RolesUserValueObject } from '../value-objects/roles-user.value-object';
 
 export class User {
   uuid: string;
@@ -7,6 +8,7 @@ export class User {
   password: string;
   createdAt: Date;
   updatedAt: Date;
+  role: RolesUserValueObject;
 
   constructor(props: Omit<User, 'uuid'>, uuid?: string) {
     Object.assign(this, props);
