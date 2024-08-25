@@ -1,6 +1,6 @@
 import { IError } from 'src/domain/errors/shared/error.interface';
 
-export class NotFoundError implements IError {
+export class ProductNotFound implements IError {
   readonly reason: string = '[Product not found]:';
   readonly message: string;
 

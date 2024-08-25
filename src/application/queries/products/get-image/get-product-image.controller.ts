@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Res } from '@nestjs/common';
 
-@Controller('products')
+@Controller('product')
 export class GetImageProductController {
   @Get('/image/:image')
   async handle(@Param('image') image: string, @Res() res) {

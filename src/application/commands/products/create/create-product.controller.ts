@@ -37,7 +37,7 @@ export class CreateProductController {
   ) {
     const result = await this.createProductUseCase.execute({
       ...input,
-      image: `/uploads/${file.filename}`,
+      image: `/product/image/${file.filename}`,
     });
     if (result.value instanceof UnexpectedError) throw result.value;
 

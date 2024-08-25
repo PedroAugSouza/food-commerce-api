@@ -18,7 +18,7 @@ describe('create a new product', () => {
       module.get<CreateProductUseCase>(CreateProductUseCase);
   });
 
-  it('should create a new product', async () => {
+  it('should be able create a new product', async () => {
     const result = await createProductUseCase.execute(
       new Product({
         name: 'Product 1',
@@ -33,7 +33,7 @@ describe('create a new product', () => {
 
     expect(result.isRight()).toBeTruthy();
   });
-  it(`shouldn't create a new product without name `, async () => {
+  it(`shouldn't be able create a new product without name `, async () => {
     const result = await createProductUseCase.execute(
       new Product({
         name: '',
@@ -48,7 +48,7 @@ describe('create a new product', () => {
 
     expect(result.isRight()).toBeFalsy();
   });
-  it(`shouldn't create a new product without price `, async () => {
+  it(`shouldn't be able create a new product without price `, async () => {
     const result = await createProductUseCase.execute(
       new Product({
         name: 'name',
@@ -63,7 +63,7 @@ describe('create a new product', () => {
 
     expect(result.isRight()).toBeFalsy();
   });
-  it(`shouldn't create a new product without category `, async () => {
+  it(`shouldn't be able create a new product without category `, async () => {
     const result = await createProductUseCase.execute(
       new Product({
         name: 'name',
@@ -78,7 +78,7 @@ describe('create a new product', () => {
 
     expect(result.isRight()).toBeFalsy();
   });
-  it(`shouldn't create a new product without image `, async () => {
+  it(`shouldn't be able create a new product without image `, async () => {
     const result = await createProductUseCase.execute(
       new Product({
         name: 'name',
@@ -93,7 +93,7 @@ describe('create a new product', () => {
 
     expect(result.isRight()).toBeFalsy();
   });
-  it(`shouldn't create a new product without description `, async () => {
+  it(`shouldn't be able create a new product without description `, async () => {
     const result = await createProductUseCase.execute(
       new Product({
         name: 'name',

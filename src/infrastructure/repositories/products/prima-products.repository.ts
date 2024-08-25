@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Product } from 'src/domain/entities/procuct.entity';
 import { IProductsRepository } from 'src/domain/repositories/products.repository';
+import { CategoryProductValueObject } from 'src/domain/value-objects/category-product.value-object';
 import { PrismaClientService } from 'src/infrastructure/prisma/prisma.service';
 
 @Injectable()
@@ -24,6 +25,7 @@ export class PrismaProductsRepository implements IProductsRepository {
     if (product)
       return new Product({
         ...product,
+        category: product.category as CategoryProductValueObject,
       });
     return null;
   }

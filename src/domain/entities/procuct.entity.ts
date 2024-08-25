@@ -16,6 +16,8 @@ export class Product {
 
     if (!uuid) {
       this.uuid = randomUUID();
+      return;
     }
+    this.uuid = uuid;
   }
 }

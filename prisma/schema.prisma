@@ -25,6 +25,6 @@ model Product {
 }
 
 enum Category {
-  drink
-  food
+  DRINK
+  FOOD
 }
