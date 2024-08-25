@@ -27,6 +27,7 @@ model Product {
 enum Category {
   DRINK
   FOOD
+  COMBO
 }
 
 model User {
