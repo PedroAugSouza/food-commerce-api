@@ -6,7 +6,7 @@ describe('build filters for product', () => {
   it('should be able to generate filter by price and category', () => {
     const filter = new FilterProductBuilder();
     filter.buildCategory(CategoryProductValueObject.DRINK);
-    filter.buildPrice('ASC');
+    filter.buildPrice('asc');
     const filterbuilded = filter.build();
 
     expect(filterbuilded).toStrictEqual({
@@ -24,7 +24,7 @@ describe('build filters for product', () => {
   it('should be able to generate filter only price ', () => {
     const filter = new FilterProductBuilder();
 
-    filter.buildPrice('ASC');
+    filter.buildPrice('asc');
     const filterbuilded = filter.build();
 
     expect(filterbuilded).toStrictEqual({

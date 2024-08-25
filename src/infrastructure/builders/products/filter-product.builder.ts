@@ -2,7 +2,7 @@ import { CategoryProductValueObject } from 'src/domain/value-objects/category-pr
 
 export class FilterProductBuilder {
   category?: CategoryProductValueObject;
-  price?: 'ASC' | 'DESC';
+  price?: 'asc' | 'desc';
 
   constructor(props?: IProps) {
     Object.assign(this, props);
@@ -11,7 +11,7 @@ export class FilterProductBuilder {
   buildCategory(category: CategoryProductValueObject) {
     this.category = category;
   }
-  buildPrice(price: 'ASC' | 'DESC') {
+  buildPrice(price: 'asc' | 'desc') {
     this.price = price;
   }
 
@@ -23,9 +23,7 @@ export class FilterProductBuilder {
 
     return {
       where: {
-        category: {
-          contains: filter.category,
-        },
+        category: filter.category,
       },
       ...(this.price
         ? {
@@ -40,5 +38,5 @@ export class FilterProductBuilder {
 
 interface IProps {
   category?: CategoryProductValueObject;
-  price?: 'ASC' | 'DESC';
+  price?: 'asc' | 'desc';
 }
