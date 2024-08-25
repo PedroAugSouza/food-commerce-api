@@ -28,3 +28,18 @@ enum Category {
   DRINK
   FOOD
 }
+
+model User {
+  uuid      String   @id
+  username  String
+  email     String   @unique
+  password  String
+  role      Role
+  createdAt DateTime
+  updatedAt DateTime
+}
+
+enum Role {
+  ADMIN
+  COMMOM
+}
