@@ -7,16 +7,14 @@ describe('build filters for product', () => {
     const filter = new FilterProductBuilder();
     filter.buildCategory(CategoryProductValueObject.DRINK);
     filter.buildPrice('asc');
-    const filterbuilded = filter.build();
+    filter.build();
 
-    expect(filterbuilded).toStrictEqual({
+    expect(filter.result).toStrictEqual({
       where: {
-        category: {
-          contains: 'DRINK',
-        },
+        category: 'DRINK',
       },
       orderBy: {
-        price: 'ASC',
+        price: 'asc',
       },
     });
   });
@@ -25,16 +23,14 @@ describe('build filters for product', () => {
     const filter = new FilterProductBuilder();
 
     filter.buildPrice('asc');
-    const filterbuilded = filter.build();
+    filter.build();
 
-    expect(filterbuilded).toStrictEqual({
+    expect(filter.result).toStrictEqual({
       where: {
-        category: {
-          contains: undefined,
-        },
+        category: undefined,
       },
       orderBy: {
-        price: 'ASC',
+        price: 'asc',
       },
     });
   });
@@ -43,13 +39,11 @@ describe('build filters for product', () => {
     const filter = new FilterProductBuilder();
     filter.buildCategory(CategoryProductValueObject.DRINK);
 
-    const filterbuilded = filter.build();
+    filter.build();
 
-    expect(filterbuilded).toStrictEqual({
+    expect(filter.result).toStrictEqual({
       where: {
-        category: {
-          contains: 'DRINK',
-        },
+        category: 'DRINK',
       },
     });
   });

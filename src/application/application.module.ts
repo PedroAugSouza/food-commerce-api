@@ -3,6 +3,7 @@ import { CommandsModule } from './commands/commands.module';
 import { PrismaRepositoriesModule } from 'src/infrastructure/repositories/prisma-repoitory.module';
 import { PrismaModule } from 'src/infrastructure/prisma/prisma.module';
 import { QueriesModule } from './queries/queries.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -10,6 +11,7 @@ import { QueriesModule } from './queries/queries.module';
     PrismaModule,
     PrismaRepositoriesModule,
     QueriesModule,
+    AuthModule,
   ],
 })
 export class ApplicationModule {}
