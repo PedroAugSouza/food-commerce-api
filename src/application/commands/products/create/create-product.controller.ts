@@ -3,6 +3,7 @@ import {
   Controller,
   Post,
   UploadedFile,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { CreateProductUseCase } from './create-product.use-case';
@@ -11,7 +12,9 @@ import { UnexpectedError } from 'src/infrastructure/errors/shared/unexpected.err
 import { MissingParamError } from 'src/infrastructure/errors/shared/missing-param.error';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
+import { AuthGuard } from 'src/infrastructure/auth/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('product')
 export class CreateProductController {
   constructor(private readonly createProductUseCase: CreateProductUseCase) {}

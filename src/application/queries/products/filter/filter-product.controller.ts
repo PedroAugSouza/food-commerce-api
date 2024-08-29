@@ -1,7 +1,9 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import { CategoryProductValueObject } from 'src/domain/value-objects/category-product.value-object';
 import { FilterProductService } from './filter.product.service';
+import { AuthGuard } from 'src/infrastructure/auth/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('product')
 export class FilterProductController {
   constructor(private readonly filterProductService: FilterProductService) {}

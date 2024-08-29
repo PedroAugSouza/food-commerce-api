@@ -1,6 +1,8 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, UseGuards } from '@nestjs/common';
 import { GetAllProductsService } from './get-all-products.service';
+import { AuthGuard } from 'src/infrastructure/auth/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('products')
 export class GetAllProductsController {
   constructor(private readonly getAllProductsService: GetAllProductsService) {}
