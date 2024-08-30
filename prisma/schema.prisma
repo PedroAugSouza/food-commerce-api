@@ -13,17 +13,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Product {
-  uuid        String   @id
-  name        String
-  price       Float
-  category    Category
-  image       String
-  description String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
 enum Category {
   DRINK
   FOOD
@@ -38,9 +27,43 @@ model User {
   role      Role
   createdAt DateTime
   updatedAt DateTime
+  Cart      Cart[]
 }
 
 enum Role {
   ADMIN
   COMMOM
+}
+
+model Product {
+  uuid            String           @id
+  name            String
+  price           Float
+  category        Category
+  image           String
+  amountAvailable Int
+  description     String
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  productsInCart  ProductsInCart[]
+  stockUuid       String?
+}
+
+model ProductsInCart {
+  uuid           String  @id
+  amountProducts Int
+  productUuid    String?
+  cartUuid       String?
+
+  Product Product? @relation(fields: [productUuid], references: [uuid])
+  Cart    Cart?    @relation(fields: [cartUuid], references: [uuid])
+}
+
+model Cart {
+  uuid           String           @id
+  productsInCart ProductsInCart[]
+  userUuid       String?
+  totalValue     Int
+
+  User User? @relation(fields: [userUuid], references: [uuid])
 }
