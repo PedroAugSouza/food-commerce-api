@@ -9,9 +9,11 @@ export class PrismaProductsRepository implements IProductsRepository {
   constructor(private readonly prisma: PrismaClientService) {}
 
   async save(product: Product): Promise<void> {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { productsInCart, ...productItems } = product;
     await this.prisma.product.create({
       data: {
-        ...product,
+        ...productItems,
         price: Number(product.price),
       },
     });
@@ -30,12 +32,14 @@ export class PrismaProductsRepository implements IProductsRepository {
     return null;
   }
   async update(product: Product): Promise<void> {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { productsInCart, ...productItems } = product;
     await this.prisma.product.update({
       where: {
         uuid: product.uuid,
       },
       data: {
-        ...product,
+        ...productItems,
       },
     });
   }

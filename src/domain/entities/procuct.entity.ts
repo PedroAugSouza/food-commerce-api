@@ -7,12 +7,12 @@ export class Product {
   name: string;
   price: number;
   description: string;
-  amountAvailable: number;
+  amountAvailable?: number = 0;
   image: string;
   category: CategoryProductValueObject;
   createdAt: Date;
   updatedAt: Date;
-  productsInCart: ProductsInCart[];
+  productsInCart?: ProductsInCart[];
 
   constructor(props: Omit<Product, 'uuid'>, uuid?: string) {
     Object.assign(this, props);
