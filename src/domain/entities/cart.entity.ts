@@ -3,7 +3,7 @@ import { ProductsInCart } from './products-in-cart';
 
 export class Cart {
   uuid: string;
-  productsInCart: ProductsInCart[];
+  productsInCart: ProductsInCart[] | [];
   userUuid: string;
   totalValue: number;
 
@@ -11,6 +11,7 @@ export class Cart {
     Object.assign(this, props);
     if (!uuid) {
       this.uuid = randomUUID();
+      return;
     }
     this.uuid = uuid;
   }
