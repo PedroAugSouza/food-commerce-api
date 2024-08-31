@@ -4,7 +4,7 @@ import { FilterProductService } from './filter.product.service';
 import { AuthGuard } from 'src/infrastructure/auth/auth.guard';
 
 @UseGuards(AuthGuard)
-@Controller('product')
+@Controller('products')
 export class FilterProductController {
   constructor(private readonly filterProductService: FilterProductService) {}
 
