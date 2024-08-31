@@ -5,6 +5,7 @@ import { Either } from 'src/infrastructure/utils/either/either';
 export interface InputAddProductDTO {
   productsUuid: string;
   amountProducts: number;
+  cartUuid: string;
 }
 
 export type OutputAddProductDTO = Either<
