@@ -1,10 +1,12 @@
-import { Body, Controller, Delete } from '@nestjs/common';
+import { Body, Controller, Delete, UseGuards } from '@nestjs/common';
 import { RemoveProductUseCase } from './remove-product.use-case';
 import { InputRemoveProductDTO } from 'src/domain/use-cases/cart/remove-product/remove-product.dto';
 import { MissingParamError } from 'src/infrastructure/errors/shared/missing-param.error';
 import { UnexpectedError } from 'src/infrastructure/errors/shared/unexpected.error';
 import { ProductNotFound } from 'src/infrastructure/errors/products/not-found.error';
+import { AuthGuard } from 'src/infrastructure/auth/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('cart')
 export class RemoveProductController {
   constructor(private readonly removeProductUseCase: RemoveProductUseCase) {}
