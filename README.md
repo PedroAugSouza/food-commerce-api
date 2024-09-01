@@ -72,13 +72,12 @@ $ npm test
   - Parâmetros:
     - `category`: Filtra produtos por categoria (ex: `food`, `drink` ou `combo`)
     - `price`: Filtra produtos do mais barato ao mais caro, e vice-versa (ex: `asc` ou `desc`)
-- `GET /products/{uuid}`: Obtém detalhes de um produto específico
-- `PATCH /products/{uuid}`: Atualiza os dados de um produto específico
-- `DELETE /products/{uuid}`: Remove um produto específico
+- `GET /product/{uuid}`: Obtém detalhes de um produto específico
+- `PATCH /product/{uuid}`: Atualiza os dados de um produto específico
 
 ### Carrinho
 
-- `GET /cart/{cartUuid}`: Visualiza o carrinho atual
+- `GET /cart/{userUuid}`: Visualiza o carrinho atual
 - `POST /cart`: Adiciona um produto ao carrinho
 - `PATCH /cart/update`: Atualiza a quantidade de um produto no carrinho
 - `DELETE /cart/remove`: Remove um produto do carrinho
