@@ -23,7 +23,7 @@ export class CreateProductController {
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
-        destination: './uploads',
+        destination: './.tmp/uploads',
         filename: async (req, file, cb) => {
           const filename = file.originalname
             .replace(' ', '-')

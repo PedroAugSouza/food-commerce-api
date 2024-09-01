@@ -4,7 +4,7 @@ import { Controller, Get, Param, Res } from '@nestjs/common';
 export class GetImageProductController {
   @Get('/image/:image')
   async handle(@Param('image') image: string, @Res() res) {
-    const imagePath = `./uploads/${image}`;
+    const imagePath = `./.tmp/uploads/${image}`;
     return res.sendFile(imagePath, { root: '.' });
   }
 }
