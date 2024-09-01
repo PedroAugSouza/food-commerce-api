@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { randomUUID } from 'crypto';
 import { User } from 'src/domain/entities/user.entiity';
 import { IUsersRepository } from 'src/domain/repositories/users.repository';
 import { RolesUserValueObject } from 'src/domain/value-objects/roles-user.value-object';
@@ -12,6 +13,12 @@ export class PrismaUsersRepository implements IUsersRepository {
     await this.prisma.user.create({
       data: {
         ...input,
+        Cart: {
+          create: {
+            uuid: randomUUID(),
+            totalValue: 0,
+          },
+        },
       },
     });
   }
