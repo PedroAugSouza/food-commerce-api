@@ -37,37 +37,37 @@ $ npm test
 
 - `POST /register`: Registra um usuário
   - Body:
-  ```json
-  {
-    "email": "String",
-    "username": "String",
-    "password": "String",
-    "role": "ADMIN" | "COMMOM",
-  }
-  ```
+    ```json
+    {
+      "email": "String",
+      "username": "String",
+      "password": "String",
+      "role": "ADMIN | COMMOM"
+    }
+    ```
 - `POST /login`: Autentica um usuário existente
   - Body:
-  ```json
-  {
-    "email": "String",
-    "password": "String"
-  }
-  ```
+    ```json
+    {
+      "email": "String",
+      "password": "String"
+    }
+    ```
 
 ### Produtos
 
 - `POST /product`: Cria um produto novo
   - Body:
-  ```json
-  {
-    "name": "String",
-    "description": "String",
-    "category": "FOOD" | "DRINK" | "COMBO",
-    "image": "File",
-    "price": "Number",
-    "amountAvailable": "Number",
-  }
-  ```
+    ```json
+    {
+      "name": "String",
+      "description": "String",
+      "category": "FOOD | DRINK | COMBO",
+      "image": "File",
+      "price": "Number",
+      "amountAvailable": "Number"
+    }
+    ```
 - `GET /products`: Lista todos os produtos disponíveis
   - Parâmetros:
     - `category`: Filtra produtos por categoria (ex: `food`, `drink` ou `combo`)
@@ -80,6 +80,14 @@ $ npm test
 - `GET /cart/{userUuid}`: Visualiza o carrinho atual
 - `POST /cart`: Adiciona um produto ao carrinho
 - `PATCH /cart/update`: Atualiza a quantidade de um produto no carrinho
+  - Body:
+    ```json
+    {
+      "amountProducts": "Number",
+      "productUuid": "String",
+      "cartUuid": "String"
+    }
+    ```
 - `DELETE /cart/remove`: Remove um produto do carrinho
   - Body:
     ```json
