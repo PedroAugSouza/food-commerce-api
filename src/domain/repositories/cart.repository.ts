@@ -1,10 +1,16 @@
-import { Cart } from '../entities/cart.entity';
+import { Cart } from '@prisma/client';
 
 export interface ICartRepository {
+  create(input: Cart): Promise<void> | void;
   add(
     productUuid: string,
     amountProducts: number,
-    uuid: string,
+    cartUuid: string,
   ): Promise<void> | void;
-  update(input: Cart): Promise<void> | void;
+  changeAmountProduct(
+    productUuid: string,
+    cartUuid: string,
+    amount: number,
+  ): Promise<void> | void;
+  remove(productUuid: string, cartUuid: string): Promise<void> | void;
 }

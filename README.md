@@ -36,23 +36,59 @@ $ npm test
 ### Autenticação
 
 - `POST /register`: Registra um usuário
+  - Body:
+  ```json
+  {
+    "email": "String",
+    "username": "String",
+    "password": "String",
+    "role": "ADMIN" | "COMMOM",
+  }
+  ```
 - `POST /login`: Autentica um usuário existente
+  - Body:
+  ```json
+  {
+    "email": "String",
+    "password": "String"
+  }
+  ```
 
 ### Produtos
 
+- `POST /product`: Cria um produto novo
+  - Body:
+  ```json
+  {
+    "name": "String",
+    "description": "String",
+    "category": "FOOD" | "DRINK" | "COMBO",
+    "image": "File",
+    "price": "Number",
+    "amountAvailable": "Number",
+  }
+  ```
 - `GET /products`: Lista todos os produtos disponíveis
   - Parâmetros:
     - `category`: Filtra produtos por categoria (ex: `food`, `drink` ou `combo`)
     - `price`: Filtra produtos do mais barato ao mais caro, e vice-versa (ex: `asc` ou `desc`)
 - `GET /products/{uuid}`: Obtém detalhes de um produto específico
 - `PATCH /products/{uuid}`: Atualiza os dados de um produto específico
+- `DELETE /products/{uuid}`: Remove um produto específico
 
 ### Carrinho
 
 - `GET /cart/{cartUuid}`: Visualiza o carrinho atual
 - `POST /cart`: Adiciona um produto ao carrinho
 - `PATCH /cart/update`: Atualiza a quantidade de um produto no carrinho
-- `DELETE /cart/remove/{productUuid}`: Remove um produto do carrinho
+- `DELETE /cart/remove`: Remove um produto do carrinho
+  - Body:
+    ```json
+    {
+      "productUuid": "String",
+      "cartUuid": "String"
+    }
+    ```
 
 ### Notas:
 
