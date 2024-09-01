@@ -1,11 +1,10 @@
 import { JwtModule } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
+import { userDummy } from '__test__dummy/mocks/mocks.entities';
 import { AuthenticateUserUseCase } from 'src/application/auth/authenticate/authenticate-user.use-case';
 import { SECRET } from 'src/domain/constants/jwt-contstants';
 import { USERS_REPOSITORY } from 'src/domain/di/repositories';
-import { User } from 'src/domain/entities/user.entiity';
 import { IUsersRepository } from 'src/domain/repositories/users.repository';
-import { RolesUserValueObject } from 'src/domain/value-objects/roles-user.value-object';
 import { MissingParamError } from 'src/infrastructure/errors/shared/missing-param.error';
 import { PasswordDoesNotMatchError } from 'src/infrastructure/errors/users/password-does-not-match.error';
 import { UserNotFoundError } from 'src/infrastructure/errors/users/user-not-found.error';
@@ -35,22 +34,13 @@ describe('authenticate user', () => {
 
     usersRepository = module.get<IUsersRepository>(USERS_REPOSITORY);
 
-    const user = new User({
-      username: 'already user',
-      email: 'user@example.com',
-      password: 'correct',
-      role: RolesUserValueObject.ADMIN,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
-
-    usersRepository.save(user);
+    usersRepository.save(userDummy);
   });
 
   it(`should be able to a authenticate a user`, async () => {
     const result = await authenticateUserUseCase.execute({
-      email: 'user@example.com',
-      password: 'correct',
+      email: 'user@email.com',
+      password: 'password-correct',
     });
 
     expect(result.isRight()).toBeTruthy();
@@ -59,7 +49,7 @@ describe('authenticate user', () => {
 
   it(`shouldn't be able to a authenticate a user if password incorrect`, async () => {
     const result = await authenticateUserUseCase.execute({
-      email: 'user@example.com',
+      email: 'user@email.com',
       password: 'incorrect',
     });
 
@@ -78,7 +68,7 @@ describe('authenticate user', () => {
 
   it(`shouldn't be able to a authenticate a user if param 'password' is missing`, async () => {
     const result = await authenticateUserUseCase.execute({
-      email: 'user@example.com',
+      email: 'user@email.com',
       password: '',
     });
 
@@ -88,7 +78,7 @@ describe('authenticate user', () => {
   it(`shouldn't be able to a authenticate a user if param 'email' is missing`, async () => {
     const result = await authenticateUserUseCase.execute({
       email: '',
-      password: 'correct',
+      password: 'password-correct',
     });
 
     expect(result.isRight()).toBeFalsy();

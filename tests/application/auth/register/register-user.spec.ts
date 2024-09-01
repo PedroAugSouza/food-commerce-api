@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { userDummy } from '__test__dummy/mocks/mocks.entities';
 import { RegisterUserUseCase } from 'src/application/auth/register/register-user.use-case';
 import { USERS_REPOSITORY } from 'src/domain/di/repositories';
-import { User } from 'src/domain/entities/user.entiity';
 import { IUsersRepository } from 'src/domain/repositories/users.repository';
 import { RolesUserValueObject } from 'src/domain/value-objects/roles-user.value-object';
 import { MissingParamError } from 'src/infrastructure/errors/shared/missing-param.error';
@@ -24,16 +24,7 @@ describe('create a new product', () => {
 
     usersRepository = module.get<IUsersRepository>(USERS_REPOSITORY);
 
-    const user = new User({
-      username: 'already user',
-      email: 'user@example.com',
-      password: 'password',
-      role: RolesUserValueObject.ADMIN,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
-
-    usersRepository.save(user);
+    usersRepository.save(userDummy);
   });
 
   it(`should be able to a register new user`, async () => {
@@ -49,7 +40,7 @@ describe('create a new product', () => {
   });
   it(`should be able to a register new user if user already exist`, async () => {
     const result = await registerUserUseCase.execute({
-      email: 'user@example.com', // email exist
+      email: 'user@email.com', // email exist
       password: 'pass123',
       role: RolesUserValueObject.COMMOM,
       username: 'username 123',
