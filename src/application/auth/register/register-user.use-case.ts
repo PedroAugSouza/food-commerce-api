@@ -30,6 +30,8 @@ export class RegisterUserUseCase implements IRegisterUserUseCase {
 
       if (!input.username) return new Left(new MissingParamError('username'));
 
+      if (!input.role) return new Left(new MissingParamError('Role'));
+
       const user = new User({
         ...input,
         updatedAt: new Date(),

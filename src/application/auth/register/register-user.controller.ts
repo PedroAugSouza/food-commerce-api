@@ -20,13 +20,13 @@ export class RegisterUserController {
     const result = await this.registerUserUseCase.execute({ ...body });
 
     if (result.value instanceof MissingParamError)
-      throw new HttpException(result.value, HttpStatus.NO_CONTENT);
+      throw new HttpException(result.value, HttpStatus.NOT_ACCEPTABLE);
 
     if (result.value instanceof UnexpectedError)
       throw new HttpException(result.value, HttpStatus.INTERNAL_SERVER_ERROR);
 
     if (result.value instanceof UserAlreadyExist)
-      return new HttpException(result.value, HttpStatus.NOT_FOUND);
+      return new HttpException(result.value, HttpStatus.CONFLICT);
 
     return result.value;
   }

@@ -22,7 +22,7 @@ export class AddProductController {
     const result = await this.addProductUseCase.execute({ ...body });
 
     if (result.value instanceof MissingParamError)
-      throw new HttpException(result.value, HttpStatus.NO_CONTENT);
+      throw new HttpException(result.value, HttpStatus.NOT_ACCEPTABLE);
 
     if (result.value instanceof UnexpectedError)
       throw new HttpException(result.value, HttpStatus.INTERNAL_SERVER_ERROR);

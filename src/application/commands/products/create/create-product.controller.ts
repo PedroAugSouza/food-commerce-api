@@ -48,7 +48,7 @@ export class CreateProductController {
       throw new HttpException(result.value, HttpStatus.INTERNAL_SERVER_ERROR);
 
     if (result.value instanceof MissingParamError)
-      throw new HttpException(result.value, HttpStatus.NO_CONTENT);
+      throw new HttpException(result.value, HttpStatus.NOT_ACCEPTABLE);
 
     return result.value;
   }

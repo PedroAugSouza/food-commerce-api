@@ -23,7 +23,7 @@ export class UpdateProductController {
     const result = await this.udpateProductUseCase.execute({ ...body });
 
     if (result.value instanceof MissingParamError)
-      throw new HttpException(result.value, HttpStatus.NO_CONTENT);
+      throw new HttpException(result.value, HttpStatus.NOT_ACCEPTABLE);
 
     if (result.value instanceof ProductNotFound)
       throw new HttpException(result.value, HttpStatus.NOT_FOUND);
