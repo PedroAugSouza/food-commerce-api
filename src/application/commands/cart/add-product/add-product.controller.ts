@@ -1,4 +1,11 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpException,
+  HttpStatus,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { AddProductUseCase } from './add-product.use-case';
 import { AuthGuard } from 'src/infrastructure/auth/auth.guard';
 import { InputAddProductDTO } from 'src/domain/use-cases/cart/add/add-product.dto';
@@ -14,9 +21,11 @@ export class AddProductController {
   async handle(@Body() body: InputAddProductDTO) {
     const result = await this.addProductUseCase.execute({ ...body });
 
-    if (result.value instanceof MissingParamError) throw result.value;
+    if (result.value instanceof MissingParamError)
+      throw new HttpException(result.value, HttpStatus.NO_CONTENT);
 
-    if (result.value instanceof UnexpectedError) throw result.value;
+    if (result.value instanceof UnexpectedError)
+      throw new HttpException(result.value, HttpStatus.INTERNAL_SERVER_ERROR);
 
     return result.value;
   }

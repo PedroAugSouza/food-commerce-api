@@ -1,4 +1,10 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpException,
+  HttpStatus,
+  Post,
+} from '@nestjs/common';
 import { AuthenticateUserUseCase } from './authenticate-user.use-case';
 import { InputAuthenticateUserDTO } from 'src/domain/use-cases/users/authenticate/authenticate-user.dto';
 import { MissingParamError } from 'src/infrastructure/errors/shared/missing-param.error';
@@ -15,13 +21,17 @@ export class AuthenticateUserController {
   async handle(@Body() body: InputAuthenticateUserDTO) {
     const result = await this.authenticateUserUseCase.execute({ ...body });
 
-    if (result.value instanceof MissingParamError) throw result.value;
+    if (result.value instanceof MissingParamError)
+      throw new HttpException(result.value, HttpStatus.NO_CONTENT);
 
-    if (result.value instanceof UnexpectedError) throw result.value;
+    if (result.value instanceof UnexpectedError)
+      throw new HttpException(result.value, HttpStatus.INTERNAL_SERVER_ERROR);
 
-    if (result.value instanceof UserNotFoundError) throw result.value;
+    if (result.value instanceof UserNotFoundError)
+      throw new HttpException(result.value, HttpStatus.NOT_FOUND);
 
-    if (result.value instanceof PasswordDoesNotMatchError) throw result.value;
+    if (result.value instanceof PasswordDoesNotMatchError)
+      throw new HttpException(result.value, HttpStatus.UNAUTHORIZED);
 
     return result.value;
   }

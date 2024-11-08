@@ -1,6 +1,8 @@
 import {
   Body,
   Controller,
+  HttpException,
+  HttpStatus,
   Post,
   UploadedFile,
   UseGuards,
@@ -42,9 +44,11 @@ export class CreateProductController {
       ...input,
       image: `/product/image/${file.filename}`,
     });
-    if (result.value instanceof UnexpectedError) throw result.value;
+    if (result.value instanceof UnexpectedError)
+      throw new HttpException(result.value, HttpStatus.INTERNAL_SERVER_ERROR);
 
-    if (result.value instanceof MissingParamError) throw result.value;
+    if (result.value instanceof MissingParamError)
+      throw new HttpException(result.value, HttpStatus.NO_CONTENT);
 
     return result.value;
   }

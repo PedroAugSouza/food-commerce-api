@@ -13,6 +13,7 @@ export const userDummy = new User({
   updatedAt: new Date(),
   createdAt: new Date(),
 });
+
 export const productDummy = new Product({
   name: 'name-product',
   description: 'desc for product',
@@ -23,6 +24,7 @@ export const productDummy = new Product({
   updatedAt: new Date(),
   createdAt: new Date(),
 });
+
 export const cartDummy = new Cart({
   totalValue: 2400,
   userUuid: userDummy.uuid,
