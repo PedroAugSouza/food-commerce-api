@@ -38,7 +38,7 @@ enum Role {
 model Product {
   uuid            String           @id
   name            String
-  price           Float
+  price           String
   category        Category
   image           String
   amountAvailable Int              @default(0)

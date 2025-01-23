@@ -23,9 +23,9 @@ export class CreateProductController {
 
   @Post()
   @UseInterceptors(
-    FileInterceptor('file', {
+    FileInterceptor('image', {
       storage: diskStorage({
-        destination: './.tmp/uploads',
+        destination: './.tmp/uploads/products',
         filename: async (req, file, cb) => {
           const filename = file.originalname
             .replace(' ', '-')
@@ -37,9 +37,10 @@ export class CreateProductController {
     }),
   )
   async handle(
-    @Body() input: InputCreateProductDTO,
-    @UploadedFile('file') file: Express.Multer.File,
+    @Body() input: Omit<InputCreateProductDTO, 'image'>,
+    @UploadedFile() file: Express.Multer.File,
   ) {
+    console.log(input);
     const result = await this.createProductUseCase.execute({
       ...input,
       image: `/product/image/${file.filename}`,

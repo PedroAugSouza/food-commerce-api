@@ -14,7 +14,6 @@ export class PrismaProductsRepository implements IProductsRepository {
     await this.prisma.product.create({
       data: {
         ...productItems,
-        price: Number(product.price),
       },
     });
   }

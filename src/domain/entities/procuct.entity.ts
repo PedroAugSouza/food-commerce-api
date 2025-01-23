@@ -5,7 +5,7 @@ import { ProductsInCart } from './products-in-cart';
 export class Product {
   uuid: string;
   name: string;
-  price: number;
+  price: string;
   description: string;
   amountAvailable?: number = 0;
   image: string;

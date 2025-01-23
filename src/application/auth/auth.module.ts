@@ -11,7 +11,7 @@ import { AuthenticateUserController } from './authenticate/authenticate-user.con
     JwtModule.register({
       global: true,
       secret: SECRET,
-      signOptions: { expiresIn: '60m' },
+      signOptions: { expiresIn: '7d' },
     }),
   ],
   providers: [RegisterUserUseCase, AuthenticateUserUseCase],

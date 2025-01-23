@@ -19,7 +19,7 @@ export const productDummy = new Product({
   description: 'desc for product',
   category: CategoryProductValueObject.FOOD,
   image: 'image-for-product.jpg',
-  price: 1200,
+  price: 'R$ 12,00',
   amountAvailable: 20,
   updatedAt: new Date(),
   createdAt: new Date(),

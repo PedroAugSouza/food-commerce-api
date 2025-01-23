@@ -5,7 +5,7 @@ import { Either } from 'src/infrastructure/utils/either/either';
 
 export interface InputCreateProductDTO {
   name: string;
-  price: number;
+  price: string;
   description: string;
   image: string;
   category: CategoryProductValueObject;
