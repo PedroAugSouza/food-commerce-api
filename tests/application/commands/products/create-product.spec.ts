@@ -22,7 +22,7 @@ describe('create a new product', () => {
     const result = await createProductUseCase.execute(
       new Product({
         name: 'Product 1',
-        price: 10,
+        price: '10',
         category: CategoryProductValueObject.DRINK,
         image: 'Image 1',
         description: 'Description 1',
@@ -37,7 +37,7 @@ describe('create a new product', () => {
     const result = await createProductUseCase.execute(
       new Product({
         name: '',
-        price: 10,
+        price: '10',
         category: CategoryProductValueObject.DRINK,
         image: 'Image 1',
         description: 'Description 1',
@@ -67,7 +67,7 @@ describe('create a new product', () => {
     const result = await createProductUseCase.execute(
       new Product({
         name: 'name',
-        price: 10,
+        price: '10',
         category: null,
         image: 'Image 1',
         description: 'Description 1',
@@ -82,7 +82,7 @@ describe('create a new product', () => {
     const result = await createProductUseCase.execute(
       new Product({
         name: 'name',
-        price: 10,
+        price: '10',
         category: CategoryProductValueObject.DRINK,
         image: '',
         description: 'Description 1',
@@ -97,7 +97,7 @@ describe('create a new product', () => {
     const result = await createProductUseCase.execute(
       new Product({
         name: 'name',
-        price: 10,
+        price: '10',
         category: CategoryProductValueObject.DRINK,
         image: 'Image 1',
         description: '',

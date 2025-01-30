@@ -11,8 +11,41 @@ import { MissingParamError } from 'src/infrastructure/errors/shared/missing-para
 import { UnexpectedError } from 'src/infrastructure/errors/shared/unexpected.error';
 import { UserNotFoundError } from 'src/infrastructure/errors/users/user-not-found.error';
 import { PasswordDoesNotMatchError } from 'src/infrastructure/errors/users/password-does-not-match.error';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('login')
+@ApiTags('Login')
+@ApiResponse({
+  status: '4XX',
+  content: {
+    'application/json': {
+      schema: {
+        properties: {
+          reason: {
+            type: 'string',
+          },
+          message: {
+            type: 'string',
+          },
+        },
+      },
+    },
+  },
+})
+@ApiResponse({
+  status: 200,
+  content: {
+    'application/json': {
+      schema: {
+        properties: {
+          access_token: {
+            type: 'string',
+          },
+        },
+      },
+    },
+  },
+})
 export class AuthenticateUserController {
   constructor(
     private readonly authenticateUserUseCase: AuthenticateUserUseCase,

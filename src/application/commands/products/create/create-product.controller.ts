@@ -15,9 +15,36 @@ import { MissingParamError } from 'src/infrastructure/errors/shared/missing-para
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { AuthGuard } from 'src/infrastructure/auth/auth.guard';
+import {
+  ApiBearerAuth,
+  ApiConsumes,
+  ApiOkResponse,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 
 @UseGuards(AuthGuard)
 @Controller('product')
+@ApiTags('Create a new product')
+@ApiBearerAuth()
+@ApiOkResponse({ description: 'Product created' })
+@ApiResponse({
+  status: '4XX',
+  content: {
+    'application/json': {
+      schema: {
+        properties: {
+          reason: {
+            type: 'string',
+          },
+          message: {
+            type: 'string',
+          },
+        },
+      },
+    },
+  },
+})
 export class CreateProductController {
   constructor(private readonly createProductUseCase: CreateProductUseCase) {}
 
@@ -36,11 +63,11 @@ export class CreateProductController {
       }),
     }),
   )
+  @ApiConsumes('multipart/form-data')
   async handle(
-    @Body() input: Omit<InputCreateProductDTO, 'image'>,
+    @Body() input: InputCreateProductDTO,
     @UploadedFile() file: Express.Multer.File,
   ) {
-    console.log(input);
     const result = await this.createProductUseCase.execute({
       ...input,
       image: `/product/image/${file.filename}`,

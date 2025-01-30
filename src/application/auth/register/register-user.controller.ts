@@ -10,8 +10,28 @@ import { InputRegisterUserDTO } from 'src/domain/use-cases/users/register/regist
 import { MissingParamError } from 'src/infrastructure/errors/shared/missing-param.error';
 import { UnexpectedError } from 'src/infrastructure/errors/shared/unexpected.error';
 import { UserAlreadyExist } from 'src/infrastructure/errors/users/user-already-exist.error';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('register')
+@ApiTags('Register')
+@ApiResponse({
+  status: '4XX',
+  content: {
+    'application/json': {
+      schema: {
+        properties: {
+          reason: {
+            type: 'string',
+          },
+          message: {
+            type: 'string',
+          },
+        },
+      },
+    },
+  },
+})
+@ApiResponse({ status: 200, description: 'User registred' })
 export class RegisterUserController {
   constructor(private readonly registerUserUseCase: RegisterUserUseCase) {}
 

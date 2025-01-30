@@ -12,9 +12,35 @@ import { MissingParamError } from 'src/infrastructure/errors/shared/missing-para
 import { UnexpectedError } from 'src/infrastructure/errors/shared/unexpected.error';
 import { ProductNotFound } from 'src/infrastructure/errors/products/not-found.error';
 import { AuthGuard } from 'src/infrastructure/auth/auth.guard';
+import {
+  ApiBearerAuth,
+  ApiOkResponse,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 
 @UseGuards(AuthGuard)
 @Controller('cart')
+@ApiTags('Remove product of the cart')
+@ApiBearerAuth()
+@ApiResponse({
+  status: '4XX',
+  content: {
+    'application/json': {
+      schema: {
+        properties: {
+          reason: {
+            type: 'string',
+          },
+          message: {
+            type: 'string',
+          },
+        },
+      },
+    },
+  },
+})
+@ApiOkResponse({ description: 'Product removed of the cart' })
 export class RemoveProductController {
   constructor(private readonly removeProductUseCase: RemoveProductUseCase) {}
 
