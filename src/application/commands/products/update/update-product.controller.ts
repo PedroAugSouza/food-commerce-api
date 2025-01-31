@@ -18,6 +18,7 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { IError } from 'src/domain/errors/shared/error.interface';
 
 @UseGuards(AuthGuard)
 @Controller('product')
@@ -26,20 +27,7 @@ import {
 @ApiOkResponse({ description: 'Product updated' })
 @ApiResponse({
   status: '4XX',
-  content: {
-    'application/json': {
-      schema: {
-        properties: {
-          reason: {
-            type: 'string',
-          },
-          message: {
-            type: 'string',
-          },
-        },
-      },
-    },
-  },
+  type: IError,
 })
 export class UpdateProductController {
   constructor(private readonly udpateProductUseCase: UpdateProductUseCase) {}

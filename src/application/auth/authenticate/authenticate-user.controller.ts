@@ -12,25 +12,13 @@ import { UnexpectedError } from 'src/infrastructure/errors/shared/unexpected.err
 import { UserNotFoundError } from 'src/infrastructure/errors/users/user-not-found.error';
 import { PasswordDoesNotMatchError } from 'src/infrastructure/errors/users/password-does-not-match.error';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { IError } from 'src/domain/errors/shared/error.interface';
 
 @Controller('login')
 @ApiTags('Login')
 @ApiResponse({
   status: '4XX',
-  content: {
-    'application/json': {
-      schema: {
-        properties: {
-          reason: {
-            type: 'string',
-          },
-          message: {
-            type: 'string',
-          },
-        },
-      },
-    },
-  },
+  type: IError,
 })
 @ApiResponse({
   status: 200,

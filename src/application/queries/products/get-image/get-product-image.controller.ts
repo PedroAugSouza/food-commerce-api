@@ -1,18 +1,10 @@
 import { Controller, Get, Param, Res } from '@nestjs/common';
 import { ApiResponse } from '@nestjs/swagger';
+import { OutputGetProductImageDTO } from './get-product-image.dto';
 
 @Controller('product')
 @ApiResponse({
-  status: 200,
-  content: {
-    'application/json': {
-      schema: {
-        properties: {
-          image: { type: 'string', format: 'binary' },
-        },
-      },
-    },
-  },
+  type: OutputGetProductImageDTO,
 })
 export class GetImageProductController {
   @Get('/image/:image')

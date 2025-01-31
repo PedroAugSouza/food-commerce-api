@@ -11,25 +11,13 @@ import { MissingParamError } from 'src/infrastructure/errors/shared/missing-para
 import { UnexpectedError } from 'src/infrastructure/errors/shared/unexpected.error';
 import { UserAlreadyExist } from 'src/infrastructure/errors/users/user-already-exist.error';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { IError } from 'src/domain/errors/shared/error.interface';
 
 @Controller('register')
 @ApiTags('Register')
 @ApiResponse({
   status: '4XX',
-  content: {
-    'application/json': {
-      schema: {
-        properties: {
-          reason: {
-            type: 'string',
-          },
-          message: {
-            type: 'string',
-          },
-        },
-      },
-    },
-  },
+  type: IError,
 })
 @ApiResponse({ status: 200, description: 'User registred' })
 export class RegisterUserController {

@@ -3,40 +3,14 @@ import { CategoryProductValueObject } from 'src/domain/value-objects/category-pr
 import { FilterProductService } from './filter.product.service';
 import { AuthGuard } from 'src/infrastructure/auth/auth.guard';
 import { ApiBearerAuth, ApiResponse } from '@nestjs/swagger';
+import { OutputFilterProductsDTO } from './filter-product.dto';
 
 @UseGuards(AuthGuard)
 @Controller('products')
 @ApiBearerAuth()
 @ApiResponse({
-  content: {
-    'application/json': {
-      schema: {
-        type: 'array',
-        items: {
-          properties: {
-            category: {
-              type: 'string',
-            },
-            description: {
-              type: 'string',
-            },
-            image: {
-              type: 'string',
-            },
-            name: {
-              type: 'string',
-            },
-            price: {
-              type: 'string',
-            },
-            uuid: {
-              type: 'string',
-            },
-          },
-        },
-      },
-    },
-  },
+  type: OutputFilterProductsDTO,
+  isArray: true,
 })
 export class FilterProductController {
   constructor(private readonly filterProductService: FilterProductService) {}

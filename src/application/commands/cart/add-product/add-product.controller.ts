@@ -17,6 +17,7 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { IError } from 'src/domain/errors/shared/error.interface';
 
 @UseGuards(AuthGuard)
 @Controller('cart')
@@ -24,20 +25,7 @@ import {
 @ApiBearerAuth()
 @ApiResponse({
   status: '4XX',
-  content: {
-    'application/json': {
-      schema: {
-        properties: {
-          reason: {
-            type: 'string',
-          },
-          message: {
-            type: 'string',
-          },
-        },
-      },
-    },
-  },
+  type: IError,
 })
 @ApiCreatedResponse({ description: 'Product added in cart' })
 export class AddProductController {

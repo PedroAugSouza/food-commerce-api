@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CreateProductUseCase } from 'src/application/commands/products/create/create-product.use-case';
-import { Product } from 'src/domain/entities/procuct.entity';
+import { Product } from 'src/domain/entities/product.entity';
 import { CategoryProductValueObject } from 'src/domain/value-objects/category-product.value-object';
 import { InMemoryRepositoriesModule } from 'src/infrastructure/repositories/in-memory-repositories.module';
 import { beforeAll, describe, it, expect } from 'vitest';

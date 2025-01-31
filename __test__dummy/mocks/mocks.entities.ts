@@ -1,5 +1,5 @@
 import { Cart } from 'src/domain/entities/cart.entity';
-import { Product } from 'src/domain/entities/procuct.entity';
+import { Product } from 'src/domain/entities/product.entity';
 import { ProductsInCart } from 'src/domain/entities/products-in-cart';
 import { User } from 'src/domain/entities/user.entiity';
 import { CategoryProductValueObject } from 'src/domain/value-objects/category-product.value-object';

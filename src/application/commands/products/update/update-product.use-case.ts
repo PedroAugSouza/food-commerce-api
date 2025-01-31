@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { PRODUCTS_REPOSITORY } from 'src/domain/di/repositories';
-import { Product } from 'src/domain/entities/procuct.entity';
+import { Product } from 'src/domain/entities/product.entity';
 import { IProductsRepository } from 'src/domain/repositories/products.repository';
 import {
   InputUpdateProductDTO,
