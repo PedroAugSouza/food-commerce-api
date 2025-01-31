@@ -1,13 +1,10 @@
-import { ApiProperty, OmitType } from '@nestjs/swagger';
-import { Cart } from 'src/domain/entities/cart.entity';
+import { ApiProperty } from '@nestjs/swagger';
 
 export interface InputGetProductsDTO {
   userUuid: string;
 }
 
-export class OutputGetProducts extends OmitType(Cart, ['userUuid', 'uuid']) {}
-
-export class Output {
+export class OutputGetProducts {
   @ApiProperty()
   totalValue: number;
 
