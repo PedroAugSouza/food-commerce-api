@@ -97,6 +97,10 @@ $ npm test
     }
     ```
 
+### Documentação - Swagger UI
+
+- `GET /documentation`: Disponibiliza a documentação diretamente das definições da API no SwaggerUI
+
 ### Notas:
 
 - Todos os endpoints, exceto registro e login, requerem autenticação.
