@@ -12,28 +12,26 @@ import { MissingParamError } from 'src/infrastructure/errors/shared/missing-para
 import { UnexpectedError } from 'src/infrastructure/errors/shared/unexpected.error';
 import { ProductNotFound } from 'src/infrastructure/errors/products/not-found.error';
 import { AuthGuard } from 'src/infrastructure/auth/auth.guard';
-import {
-  ApiBearerAuth,
-  ApiOkResponse,
-  ApiResponse,
-  ApiTags,
-} from '@nestjs/swagger';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { IError } from 'src/domain/errors/shared/error.interface';
 
 @UseGuards(AuthGuard)
 @Controller('cart')
 @ApiTags('Change amount product in cart')
 @ApiBearerAuth()
-@ApiResponse({
-  status: '4XX',
-  type: IError,
-})
-@ApiOkResponse({ description: 'Amount product in the cart changed' })
 export class ChangeAmountProductController {
   constructor(
     private readonly changeAmountProductUseCase: ChangeAmountProductUseCase,
   ) {}
   @Patch('/update')
+  @ApiResponse({
+    status: '4XX',
+    type: IError,
+  })
+  @ApiResponse({
+    status: 201,
+    description: 'Amount product in the cart changed',
+  })
   async handle(@Body() body: InputChangeAmountProductDTO) {
     const result = await this.changeAmountProductUseCase.execute({ ...body });
 

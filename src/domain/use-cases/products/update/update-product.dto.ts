@@ -21,6 +21,7 @@ export class InputUpdateProductDTO {
 
   @ApiProperty({ nullable: true })
   image?: string;
+  
   @ApiProperty({ nullable: true })
   category?: CategoryProductValueObject;
 

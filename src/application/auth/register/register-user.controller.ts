@@ -15,15 +15,15 @@ import { IError } from 'src/domain/errors/shared/error.interface';
 
 @Controller('register')
 @ApiTags('Register')
-@ApiResponse({
-  status: '4XX',
-  type: IError,
-})
-@ApiResponse({ status: 200, description: 'User registred' })
 export class RegisterUserController {
   constructor(private readonly registerUserUseCase: RegisterUserUseCase) {}
 
   @Post()
+  @ApiResponse({
+    status: '4XX',
+    type: IError,
+  })
+  @ApiResponse({ status: 201, description: 'User registred' })
   async handle(@Body() body: InputRegisterUserDTO) {
     const result = await this.registerUserUseCase.execute({ ...body });
 

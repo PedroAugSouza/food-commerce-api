@@ -18,7 +18,6 @@ import { AuthGuard } from 'src/infrastructure/auth/auth.guard';
 import {
   ApiBearerAuth,
   ApiConsumes,
-  ApiOkResponse,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
@@ -28,15 +27,15 @@ import { IError } from 'src/domain/errors/shared/error.interface';
 @Controller('product')
 @ApiTags('Create a new product')
 @ApiBearerAuth()
-@ApiOkResponse({ description: 'Product created' })
-@ApiResponse({
-  status: '4XX',
-  type: IError,
-})
 export class CreateProductController {
   constructor(private readonly createProductUseCase: CreateProductUseCase) {}
 
   @Post()
+  @ApiResponse({ status: 201, description: 'Product created' })
+  @ApiResponse({
+    status: '4XX',
+    type: IError,
+  })
   @UseInterceptors(
     FileInterceptor('image', {
       storage: diskStorage({

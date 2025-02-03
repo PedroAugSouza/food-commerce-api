@@ -7,13 +7,14 @@ import { OutputGetProducts } from './get-products.dto';
 @UseGuards(AuthGuard)
 @Controller('cart')
 @ApiBearerAuth()
-@ApiResponse({
-  type: OutputGetProducts,
-})
 export class GetProductsController {
   constructor(private readonly getProductsService: GetProductsService) {}
 
   @Get('/:userUuid')
+  @ApiResponse({
+    status: 200,
+    type: OutputGetProducts,
+  })
   async handle(@Param('userUuid') userUuid: string) {
     const result = await this.getProductsService.execute({ userUuid });
     return result;

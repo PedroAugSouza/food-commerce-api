@@ -11,27 +11,22 @@ import { AuthGuard } from 'src/infrastructure/auth/auth.guard';
 import { InputAddProductDTO } from 'src/domain/use-cases/cart/add/add-product.dto';
 import { MissingParamError } from 'src/infrastructure/errors/shared/missing-param.error';
 import { UnexpectedError } from 'src/infrastructure/errors/shared/unexpected.error';
-import {
-  ApiBearerAuth,
-  ApiCreatedResponse,
-  ApiResponse,
-  ApiTags,
-} from '@nestjs/swagger';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { IError } from 'src/domain/errors/shared/error.interface';
 
 @UseGuards(AuthGuard)
 @Controller('cart')
 @ApiTags('Add product in cart')
 @ApiBearerAuth()
-@ApiResponse({
-  status: '4XX',
-  type: IError,
-})
-@ApiCreatedResponse({ description: 'Product added in cart' })
 export class AddProductController {
   constructor(private readonly addProductUseCase: AddProductUseCase) {}
 
   @Post()
+  @ApiResponse({
+    status: '4XX',
+    type: IError,
+  })
+  @ApiResponse({ status: 201, description: 'Product added in cart' })
   async handle(@Body() body: InputAddProductDTO) {
     const result = await this.addProductUseCase.execute({ ...body });
 

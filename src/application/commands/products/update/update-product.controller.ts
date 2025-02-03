@@ -12,27 +12,22 @@ import { MissingParamError } from 'src/infrastructure/errors/shared/missing-para
 import { ProductNotFound } from 'src/infrastructure/errors/products/not-found.error';
 import { UnexpectedError } from 'src/infrastructure/errors/shared/unexpected.error';
 import { AuthGuard } from 'src/infrastructure/auth/auth.guard';
-import {
-  ApiBearerAuth,
-  ApiOkResponse,
-  ApiResponse,
-  ApiTags,
-} from '@nestjs/swagger';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { IError } from 'src/domain/errors/shared/error.interface';
 
 @UseGuards(AuthGuard)
 @Controller('product')
 @ApiTags('Update a product')
 @ApiBearerAuth()
-@ApiOkResponse({ description: 'Product updated' })
-@ApiResponse({
-  status: '4XX',
-  type: IError,
-})
 export class UpdateProductController {
   constructor(private readonly udpateProductUseCase: UpdateProductUseCase) {}
 
   @Patch()
+  @ApiResponse({ status: 201, description: 'Product updated' })
+  @ApiResponse({
+    status: '4XX',
+    type: IError,
+  })
   async handle(@Body() body: InputUpdateProductDTO) {
     const result = await this.udpateProductUseCase.execute({ ...body });
 

@@ -8,14 +8,15 @@ import { OutputFilterProductsDTO } from './filter-product.dto';
 @UseGuards(AuthGuard)
 @Controller('products')
 @ApiBearerAuth()
-@ApiResponse({
-  type: OutputFilterProductsDTO,
-  isArray: true,
-})
 export class FilterProductController {
   constructor(private readonly filterProductService: FilterProductService) {}
 
   @Get()
+  @ApiResponse({
+    status: 200,
+    type: OutputFilterProductsDTO,
+    isArray: true,
+  })
   async handle(
     @Query('price') price?: 'asc' | 'desc',
     @Query('category') category?: CategoryProductValueObject,

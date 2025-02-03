@@ -16,29 +16,29 @@ import { IError } from 'src/domain/errors/shared/error.interface';
 
 @Controller('login')
 @ApiTags('Login')
-@ApiResponse({
-  status: '4XX',
-  type: IError,
-})
-@ApiResponse({
-  status: 200,
-  content: {
-    'application/json': {
-      schema: {
-        properties: {
-          access_token: {
-            type: 'string',
-          },
-        },
-      },
-    },
-  },
-})
 export class AuthenticateUserController {
   constructor(
     private readonly authenticateUserUseCase: AuthenticateUserUseCase,
   ) {}
   @Post()
+  @ApiResponse({
+    status: '4XX',
+    type: IError,
+  })
+  @ApiResponse({
+    status: 201,
+    content: {
+      'application/json': {
+        schema: {
+          properties: {
+            access_token: {
+              type: 'string',
+            },
+          },
+        },
+      },
+    },
+  })
   async handle(@Body() body: InputAuthenticateUserDTO) {
     const result = await this.authenticateUserUseCase.execute({ ...body });
 

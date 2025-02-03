@@ -12,27 +12,22 @@ import { MissingParamError } from 'src/infrastructure/errors/shared/missing-para
 import { UnexpectedError } from 'src/infrastructure/errors/shared/unexpected.error';
 import { ProductNotFound } from 'src/infrastructure/errors/products/not-found.error';
 import { AuthGuard } from 'src/infrastructure/auth/auth.guard';
-import {
-  ApiBearerAuth,
-  ApiOkResponse,
-  ApiResponse,
-  ApiTags,
-} from '@nestjs/swagger';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { IError } from 'src/domain/errors/shared/error.interface';
 
 @UseGuards(AuthGuard)
 @Controller('cart')
 @ApiTags('Remove product of the cart')
 @ApiBearerAuth()
-@ApiResponse({
-  status: '4XX',
-  type: IError,
-})
-@ApiOkResponse({ description: 'Product removed of the cart' })
 export class RemoveProductController {
   constructor(private readonly removeProductUseCase: RemoveProductUseCase) {}
 
   @Delete('/remove')
+  @ApiResponse({
+    status: '4XX',
+    type: IError,
+  })
+  @ApiResponse({ status: 201, description: 'Product removed of the cart' })
   async handle(@Body() body: InputRemoveProductDTO) {
     const result = await this.removeProductUseCase.execute({
       ...body,
